@@ -1,0 +1,9 @@
+<view class="page">
+    <view class="title">请您先完成授权</view>
+    <view class="image">
+        <image src="http://file.xiaomutong.com.cn/20200228/img13.jpeg" />
+    </view>
+    <view class="btn-area">
+        <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" style="">去授权</button>
+    </view>
+</view>

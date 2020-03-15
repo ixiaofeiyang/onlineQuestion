@@ -1,0 +1,15 @@
+<view class="page-entry">
+    <view class="header">{{name}}</view>
+    <view class="modes">
+        <block wx:for="{{modes}}" wx:key="*this" wx:for-index="idx" wx:for-item="mode">
+            <view class="mode" bindtap="goExam" data-id="{{mode.id}}">
+                <view class="sortnum">{{idx+1}}</view>
+                <view class="name">{{mode.title}}</view>
+                <view class="arraw">></view>
+            </view>       
+        </block>
+    </view>
+    <view class="adContainer">
+        <ad unit-id="adunit-06c6c9f8267532b7" ad-type="video" ad-theme="white"></ad>
+    </view>
+</view>

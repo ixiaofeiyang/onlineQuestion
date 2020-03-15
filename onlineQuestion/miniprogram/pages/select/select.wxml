@@ -1,0 +1,13 @@
+<view class="page-select">
+    <view class="title">该科目答题练习册如下：</view>
+    <view class="selects">
+        <block wx:for="{{items}}" wx:key="id" wx:for-index="idx" wx:for-item="item">
+            <view class="select" bindtap="toExercisePage" data-id="{{item._id}}">
+                <view class="sortnum">{{idx+1}}</view>
+                <view class="name">{{item.name}}</view>
+                <view class="arraw">></view>
+            </view>       
+        </block>
+    </view>
+    
+</view>

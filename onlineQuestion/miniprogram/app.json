@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/home/index",
+    "pages/me/index",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/subject/index",
+    "pages/entry/index",
+    "pages/question/index",
+    "pages/simple/index",
+    "pages/about/index",
+    "pages/rule/index",
+    "pages/score/index",
+    "pages/history/index",
+    "pages/study/index",
+    "pages/detail/index",
+    "pages/look/index",
+    "pages/pay/index",
+    "pages/exam/exam",
+    "pages/result/result",
+    "pages/examresult/examresult",
+    "pages/note/note",
+    "pages/review/review",
+    "pages/wechat/wechat",
+    "pages/select/select",
+    "pages/exercise/exercise"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1bcfad",
+    "navigationBarTitleText": "考试助手",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color":"#bfbfbf",
+    "selectedColor":"#1bcfad",
+    "list": [
+      {
+        "selectedIconPath": "icons/home-selected.png",
+        "iconPath": "icons/home.png",
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "icons/me-selected.png",
+        "iconPath": "icons/me.png",
+        "pagePath": "pages/me/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

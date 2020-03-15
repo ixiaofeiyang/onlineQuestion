@@ -1,0 +1,29 @@
+/* miniprogram/pages/wechat/wechat.wxss */
+.page{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.page .title{
+    text-align: left;
+    padding: 10px
+}
+.page .image{
+
+}
+.page .btn-area{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.page .btn-area button{
+    background-color: #1bcfad;
+    width: 375rpx;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #fff;
+}

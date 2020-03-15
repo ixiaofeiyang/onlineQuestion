@@ -1,0 +1,27 @@
+<view class="page-subjects">
+    <view class="swiper">
+        <swiper
+        indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+        <block wx:for="{{images}}" wx:key="*this">
+            <swiper-item>
+            <view class="swiper-item">
+                <image src="{{item}}" mode="aspectFill"/>
+            </view>
+            </swiper-item>
+        </block>
+        </swiper>
+    </view>
+    <view class="header">请选择考试科目：</view>
+    <view class="subjects">
+        <block wx:for="{{subjects}}" wx:key="*this" wx:for-index="idx" wx:for-item="subject">
+            <view class="subject" bindtap="toExamPage" data-id="{{subject._id}}" data-code="{{subject.code}}">
+                <view class="sortnum">{{idx+1}}</view>
+                <view class="name">{{subject.name}}</view>
+                <view class="arraw">></view>
+            </view>       
+        </block>
+    </view>
+
+
+</view>
