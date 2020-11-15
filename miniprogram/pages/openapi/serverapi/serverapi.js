@@ -1,25 +1,118 @@
 Page({
 
   data: {
-    templateMessageResult: '',
+    templateId: '',
+    subscribeMessageResult: '',
+    requestSubscribeMessageResult: '',
     wxacodeSrc: '',
     wxacodeResult: '',
     showClearWXACodeCache: false,
   },
 
-  submitTemplateMessageForm(e) {
+  async getSubscribeMessageTemplate() {
+    try {
+      const { result } = await wx.cloud.callFunction({
+        name: 'openapi',
+        data: {
+          action: 'requestSubscribeMessage',
+        },
+      })
+
+      const templateId = result
+
+      console.warn('[云函数] [openapi] 获取订阅消息模板 调用成功：', templateId)
+      this.setData({
+        templateId,
+      })
+    } catch (err) {
+      wx.showToast({
+        icon: 'none',
+        title: '调用失败',
+      })
+      console.error('[云函数] [openapi] 获取订阅消息模板 调用失败：', err)
+    }
+  },
+
+  async requestSubscribeMessage() {
+    const templateId = this.data.templateId
+
+    if (!templateId) {
+      wx.showModal({
+        title: '发送失败',
+        content: '请先获取模板 ID',
+        showCancel: false,
+      })
+    }
+
+    wx.requestSubscribeMessage({
+      tmplIds: [templateId],
+      success: (res) => {
+        if (res[templateId] === 'accept') {
+          this.setData({
+            requestSubscribeMessageResult: '成功',
+          })
+        } else {
+          this.setData({
+            requestSubscribeMessageResult: `失败（${res[templateId]}）`,
+          })
+        }
+      },
+      fail: (err) => {
+        this.setData({
+          requestSubscribeMessageResult: `失败（${JSON.stringify(err)}）`,
+        })
+      },
+    })
+  },
+
+  sendSubscribeMessage(e) {
     this.setData({
-      templateMessageResult: '',
+      subscribeMessageResult: '',
     })
 
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
-        action: 'sendTemplateMessage',
+        action: 'sendSubscribeMessage',
+        templateId: this.data.templateId,
+      },
+      success: res => {
+        console.warn('[云函数] [openapi] subscribeMessage.send 调用成功：', res)
+        wx.showModal({
+          title: '发送成功',
+          content: '请返回微信主界面查看',
+          showCancel: false,
+        })
+        wx.showToast({
+          title: '发送成功，请返回微信主界面查看',
+        })
+        this.setData({
+          subscribeMessageResult: JSON.stringify(res.result)
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '调用失败',
+        })
+        console.error('[云函数] [openapi] subscribeMessage.send 调用失败：', err)
+      }
+    })
+  },
+
+  submitSubscribeMessageForm(e) {
+    this.setData({
+      subscribeMessageResult: '',
+    })
+
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action: 'sendSubscribeMessage',
         formId: e.detail.formId,
       },
       success: res => {
-        console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
+        console.warn('[云函数] [openapi] subscribeMessage.send 调用成功：', res)
         wx.showModal({
           title: '发送成功',
           content: '请返回微信主界面查看',
